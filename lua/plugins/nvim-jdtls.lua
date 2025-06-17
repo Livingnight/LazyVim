@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-field
-local java_filetypes = { "java", "yaml", "jproperties" }
+local java_filetypes = { "java" }
 
 -- Utility function to extend or override a config table, similar to the way
 -- that Plugin.opts works.
@@ -123,8 +123,7 @@ return {
     --
     -- vim.notify("spring boot package")
     -- vim.notify(vim.inspect(require("spring_boot")))
-    local spring_boot_extensions = require("spring_boot").java_extensions()
-    --
+
     -- vim.notify("java extensions maybe?")
     -- vim.notify(vim.inspect(spring_boot_extensions))
 
@@ -204,7 +203,7 @@ return {
     -- depending on filetype, so this autocmd doesn't run for the first file.
     -- For that, we call directly below.
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = java_filetypes,
+      pattern = { "java" },
       callback = attach_jdtls,
     })
 
